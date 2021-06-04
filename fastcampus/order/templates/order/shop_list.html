@@ -1,0 +1,8 @@
+{% for shop in shop_list %}
+<ul>
+    <a href='/shops/shop_list/{{shop.id}}'>
+        <h2> {{ shop.shop_name }}</h2>
+        <h5> {{ shop.shop_address }}</h5>
+    </a>
+</ul>
+{% endfor %}
