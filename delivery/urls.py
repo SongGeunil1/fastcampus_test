@@ -1,8 +1,8 @@
-from django.contrib import admin
-from django.urls import path, include
-from . import views
+from django.urls import path
+from delivery import views
 
 urlpatterns = [
-    path('orders/<int:id>', views.order_list, name='deliver_orders'),
-    path('deliver_input', views.deliver_input, name='deliver_input')
+    path('orders/', views.order_list, name="order_list"),
+    # path('menus/<int:shop>', views.menu, name="menu"),
+    # path('order/',views.order, name="order")
 ]

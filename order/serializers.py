@@ -1,24 +1,12 @@
 from rest_framework import serializers
-from .models import shops,menu,orders,order_foodlist
+from order.models import Shop,Menu, Order,Orderfood
 
-class shopsSerializer(serializers.ModelSerializer):
+class ShopSerializer(serializers.ModelSerializer):
     class Meta:
-        model = shops
+        model = Shop
         fields = '__all__'
-        # fields = ['id','shop_name','shop_address']
 
-class ordersSerializer(serializers.ModelSerializer):
+class MenuSerializer(serializers.ModelSerializer):
     class Meta:
-        model = orders
-        fields = '__all__'
-        # fields = ['id','shop_name','shop_address']
-
-class menuSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = menu
-        fields = ['id','shop','food_name']
-
-class orderfoodSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = order_foodlist
+        model = Menu
         fields = '__all__'

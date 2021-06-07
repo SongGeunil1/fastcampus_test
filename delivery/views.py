@@ -1,22 +1,18 @@
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from order.models import Shop,Menu, Order,Orderfood
+from order.serializers import ShopSerializer, MenuSerializer
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from django.shortcuts import render
-from django.utils import timezone
-
-from order.models import shops,menu,orders,order_foodlist
-from order.serializers import shopsSerializer,menuSerializer,ordersSerializer,orderfoodSerializer
 
 @csrf_exempt
-def order_list(request,id):
-    if request.method == 'GET':
-        data = orders.objects.filter(shop=id)
-        return render(request, 'delivery/order_list.html', {'order_list': data})
+def order_list(request):
+    if request.method =='GET':
+        order_list = Order.objects.all()
+        return render(request, 'delivery/order_list.html',{'order_list': order_list})
 
-@csrf_exempt
-def deliver_input(request):
-    if request.method == 'POST':
-        data = orders.objects.get(pk=int(request.POST['order_id']))
-        data.deliver_finish = 1
-        data.save()
+    elif request.method =='POST':
+        order_item = Order.objects.get(pk=int(request.POST['order_id']))
+        order_item.deliver_finish=1
+        order_item.save()
         return render(request, 'delivery/success.html')
